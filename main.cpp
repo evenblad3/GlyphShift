@@ -20,8 +20,43 @@ public:
 	}
 
 	void initMap() {
-		charMask['A'] = {L'А', L'А', L'А', L'А', L'А', L'А'};
-		charMask['B'] = {L'В', L'Б', L'В', L'Б'};
+		/*
+		=== NUMBERS ===
+		*/
+		// 1
+		// 2
+		charMask['3'] = {L'Ʒ', L'ʒ', L'Ȝ', L'ȝ', L'Ҙ', L'ҙ'};
+		// 4
+
+		/*
+		=== AlPHABETS ===
+		*/
+		charMask['A'] = {L'А'};
+		charMask['B'] = {L'В', L'Б'};
+		charMask['C'] = {L'С'};
+		// D
+		charMask['E'] = {L'Е', L'Ё'};
+		// F
+		// G
+		charMask['H'] = {L'Н', L'Њ'};
+		charMask['I'] = {L'І', L'Ї'};
+		// J
+		charMask['K'] = {L'К', L'Ќ'};
+		// L
+		charMask['M'] = {L'М'};
+		charMask['N'] = {L'И', L'Й', L'П'};
+		charMask['O'] = {L'О', L'Ӧ', L'Ф', L'Ѳ'};
+		charMask['P'] = {L'Р'};
+		// Q
+		charMask['R'] = {L'Я'};
+		charMask['S'] = {L'Ѕ'};
+		charMask['T'] = {L'Т'};
+		// U
+		charMask['V'] = {L'Ѵ'};
+		charMask['W'] = {L'Ш'};
+		charMask['X'] = {L'Х'};
+		charMask['Y'] = {L'У'};
+		charMask['Z'] = {L'Ζ'};
 	}
 
 	std::wstring obfuscate(const std::wstring &input) {
