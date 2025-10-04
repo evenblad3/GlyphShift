@@ -31,32 +31,43 @@ public:
 		/*
 		=== AlPHABETS ===
 		*/
-		charMask['A'] = {L'А'};
+		charMask['A'] = {
+			L'А', L'Α', L'Á', L'Ä', L'À', L'Ả', L'Ã', L'Á', L'Ạ', L'Ă', L'Ằ',
+			L'Ẳ', L'Ẵ', L'Ắ', L'Ặ', L'Â', L'Ầ', L'Ẩ', L'Ẫ', L'Ấ', L'Ậ', L'Ą'
+		};
 		charMask['B'] = {L'В', L'Б'};
 		charMask['C'] = {L'С'};
-		// D
-		charMask['E'] = {L'Е', L'Ё'};
+		charMask['D'] = {L'Đ', L'Ď'};
+		charMask['E'] = {
+			L'Е', L'Ε', L'Ё', L'È', L'Ẻ', L'Ẽ',L'É',
+			L'Ẹ', L'Ê', L'Ề', L'Ể',L'Ễ', L'Ế', L'Ệ'
+		};
 		// F
 		// G
-		charMask['H'] = {L'Н', L'Њ'};
+		charMask['H'] = {L'Н', L'Η'};
 		charMask['I'] = {L'І', L'Ї'};
-		// J
+		charMask['J'] = {L'Ј'};
 		charMask['K'] = {L'К', L'Ќ'};
-		// L
+		charMask['L'] = {L'Ł'};
 		charMask['M'] = {L'М'};
 		charMask['N'] = {L'И', L'Й', L'П'};
-		charMask['O'] = {L'О', L'Ӧ', L'Ф', L'Ѳ'};
-		charMask['P'] = {L'Р'};
+		charMask['O'] = {
+			L'О', L'Ӧ', L'Ο', L'Ѳ', L'Ò', L'Ỏ', L'Õ', L'Ó', L'Ọ', L'Ô',
+			L'Ồ', L'Ổ', L'Ỗ', L'Ố', L'Ộ', L'Ơ', L'Ờ', L'Ở', L'Ỡ', L'Ớ', L'Ợ' 
+		};
+		charMask['P'] = {L'Р', L'Ρ'};
 		// Q
 		charMask['R'] = {L'Я'};
 		charMask['S'] = {L'Ѕ'};
-		charMask['T'] = {L'Т'};
-		// U
+		charMask['T'] = {L'Т', L'Τ'};
+		charMask['U'] = {
+			L'Ù', L'Ủ', L'Ũ', L'Ú', L'Ụ', L'Ư', L'Ừ', L'Ử', L'Ữ', L'Ứ', L'Ự' 
+		};
 		charMask['V'] = {L'Ѵ'};
 		charMask['W'] = {L'Ш'};
 		charMask['X'] = {L'Х'};
-		charMask['Y'] = {L'У'};
-		charMask['Z'] = {L'Ζ'};
+		charMask['Y'] = {L'Υ'};
+		charMask['Z'] = {L'Ζ', L'Ζ', L'Ż', L'Ž'};
 	}
 
 	std::wstring obfuscate(const std::wstring &input) {
