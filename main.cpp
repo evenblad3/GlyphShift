@@ -5,9 +5,7 @@
 #include <vector>
 #include <random>
 #include <ctime>
-#include <fstream>
-#include <locale>
-#include <codecvt>
+#include <Windows.h>
 
 class GlyphShift {
 private:
@@ -84,6 +82,35 @@ public:
 		}
 		return result;
 	}
+
+	void copyToClipboard(const std::wstring &ws) {
+		if (!OpenClipboard(nullptr)) {
+			std::printf("Unable to access clipboard.\n");
+			return;
+		}
+
+		EmptyClipboard();
+
+		HGLOBAL hg = GlobalAlloc(GMEM_MOVEABLE, (ws.size() + 1) * sizeof(wchar_t));
+		if (hg == nullptr) {
+			std::printf("Memory allocation failed.\n");
+			CloseClipboard();
+			return;
+		}
+
+		wchar_t *lpstrCopy = static_cast<wchar_t*>(GlobalLock(hg));
+		if (lpstrCopy == nullptr) {
+			std::printf("Unable to lock global memory failed.\n");
+			GlobalFree(hg);
+			CloseClipboard();
+			return;
+		}
+
+		std::wmemcpy(lpstrCopy, ws.c_str(), ws.size() + 1);
+		GlobalUnlock(hg);
+		SetClipboardData(CF_UNICODETEXT, hg);
+		CloseClipboard();
+	}
 };
 
 
@@ -91,19 +118,14 @@ int main() {
 	setlocale(LC_ALL, "");
 	std::wprintf(L"Hello Wide ass characters...\n");
 	std::wstring myinput = L"Wide ABC :)";
+
 	GlyphShift obfuscator;
 	std::wstring obfuscated = obfuscator.obfuscate(myinput);
+
 	std::wprintf(L"Original   %ls\n", myinput.c_str());
 	std::wprintf(L"Obfuscated %ls\n", obfuscated.c_str());
-	std::wofstream outFile("bro.txt");
-	if (!outFile) {
-		std::printf("File was not written!\n");
-		return -1;
-	}
-	outFile.imbue(std::locale(outFile.getloc(), new std::codecvt_utf8<wchar_t>()));
-    outFile << obfuscated;
-    outFile.close();
-	std::printf("File written!\n");
+
+	obfuscator.copyToClipboard(obfuscated);
 
 	return 0;
 }
