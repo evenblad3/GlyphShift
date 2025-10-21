@@ -116,14 +116,17 @@ public:
 
 int main() {
 	setlocale(LC_ALL, "");
-	std::wprintf(L"Hello Wide ass characters...\n");
-	std::wstring myinput = L"Wide ABC :)";
+	std::wprintf(L"=== GlyphShift ===\n");
+	wchar_t buffer[CHAR_MAX];
+	std::printf("Enter text to obfuscate: ");
+	fgetws(buffer, CHAR_MAX, stdin);
+	buffer[wcscspn(buffer, L"\n")] = '\0';
 
 	GlyphShift obfuscator;
-	std::wstring obfuscated = obfuscator.obfuscate(myinput);
+	std::wstring obfuscated = obfuscator.obfuscate(buffer);
 
-	std::wprintf(L"Original   %ls\n", myinput.c_str());
-	std::wprintf(L"Obfuscated %ls\n", obfuscated.c_str());
+	std::wprintf(L"Original:   %ls\n", buffer);
+	std::wprintf(L"Obfuscated: %ls\n", obfuscated.c_str());
 
 	obfuscator.copyToClipboard(obfuscated);
 
