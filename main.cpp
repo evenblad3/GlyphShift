@@ -33,8 +33,10 @@ public:
 			L'А', L'Α', L'Á', L'Ä', L'À', L'Ả', L'Ã', L'Á', L'Ạ', L'Ă', L'Ằ',
 			L'Ẳ', L'Ẵ', L'Ắ', L'Ặ', L'Â', L'Ầ', L'Ẩ', L'Ẫ', L'Ấ', L'Ậ', L'Ą'
 		};
+		charMask['a'] = {L'а', L'а', L'а', L'ă', L'å', L'ä', L'ā', L'ą'};
 		charMask['B'] = {L'В', L'Б'};
 		charMask['C'] = {L'С'};
+		charMask['c'] = {L'с', L'ç', L'ć'};
 		charMask['D'] = {L'Đ', L'Ď'};
 		charMask['E'] = {
 			L'Е', L'Ε', L'Ё', L'È', L'Ẻ', L'Ẽ',L'É',
@@ -42,7 +44,7 @@ public:
 		};
 		// F
 		// G
-		charMask['H'] = {L'Н', L'Η'};
+		charMask['H'] = {L'Н', L'Η', L'Ӈ'};
 		charMask['I'] = {L'І', L'Ї'};
 		charMask['J'] = {L'Ј'};
 		charMask['K'] = {L'К', L'Ќ'};
@@ -54,7 +56,8 @@ public:
 			L'Ồ', L'Ổ', L'Ỗ', L'Ố', L'Ộ', L'Ơ', L'Ờ', L'Ở', L'Ỡ', L'Ớ', L'Ợ' 
 		};
 		charMask['P'] = {L'Р', L'Ρ'};
-		// Q
+		charMask['p'] = {L'р'};
+		charMask['Q'] = {L'Ԛ'};
 		charMask['R'] = {L'Я'};
 		charMask['S'] = {L'Ѕ'};
 		charMask['T'] = {L'Т', L'Τ'};
@@ -62,8 +65,8 @@ public:
 			L'Ù', L'Ủ', L'Ũ', L'Ú', L'Ụ', L'Ư', L'Ừ', L'Ử', L'Ữ', L'Ứ', L'Ự' 
 		};
 		charMask['V'] = {L'Ѵ'};
-		charMask['W'] = {L'Ш'};
-		charMask['X'] = {L'Х'};
+		charMask['W'] = {L'Ԝ', L'Ш'};
+		charMask['X'] = {L'Х', L'Ҳ'};
 		charMask['Y'] = {L'Υ'};
 		charMask['Z'] = {L'Ζ', L'Ζ', L'Ż', L'Ž'};
 	}
@@ -88,6 +91,12 @@ public:
 			std::printf("Unable to access clipboard.\n");
 			return;
 		}
+
+		struct clipboardDistructor {
+			~clipboardDistructor() {
+				CloseClipboard();
+			}
+		} cd;
 
 		EmptyClipboard();
 
